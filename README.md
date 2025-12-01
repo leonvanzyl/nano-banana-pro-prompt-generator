@@ -1,295 +1,159 @@
-# Agentic Coding Boilerplate
+# Nano Banana Pro
 
-A complete agentic coding boilerplate with authentication, PostgreSQL database, AI chat functionality, and modern UI components - perfect for building AI-powered applications and autonomous agents.
+An AI-powered image generator application that uses Google's Gemini 3 Pro Image Preview model to create and refine images based on detailed prompts with optional reference images (avatars) for consistent character generation.
 
-## 🚀 Features
+## Features
 
-- **🔐 Authentication**: Better Auth with Google OAuth integration
-- **🗃️ Database**: Drizzle ORM with PostgreSQL
-- **🤖 AI Integration**: Vercel AI SDK with OpenRouter (access to 100+ AI models)
-- **📁 File Storage**: Automatic local/Vercel Blob storage with seamless switching
-- **🎨 UI Components**: shadcn/ui with Tailwind CSS
-- **⚡ Modern Stack**: Next.js 16, React 19, TypeScript
-- **📱 Responsive**: Mobile-first design approach
+- **AI Image Generation**: Generate images using Google Gemini 3 Pro with multi-turn conversation support for refinements
+- **Prompt Builder**: Intuitive UI to construct detailed prompts with location, lighting, camera angle, style, and subject options
+- **Avatar System**: Upload reference images to maintain consistent characters/objects across generations
+- **Gallery**: Browse and share generated images with the community
+- **Like System**: Like and discover popular images from other users
+- **BYOK (Bring Your Own Key)**: Users provide their own Google AI API key, stored securely with AES-256-GCM encryption
 
-## 🎥 Video Tutorial
+## Tech Stack
 
-Watch the complete walkthrough of this agentic coding template:
+- **Framework**: Next.js 16 (App Router) with React 19
+- **Database**: PostgreSQL with Drizzle ORM
+- **Authentication**: Better Auth with Google OAuth
+- **AI**: Google Gemini via `@google/genai` SDK
+- **Storage**: Vercel Blob (production) / local filesystem (development)
+- **UI**: shadcn/ui with Tailwind CSS v4
 
-[![Agentic Coding Boilerplate Tutorial](https://img.youtube.com/vi/JQ86N3WOAh4/maxresdefault.jpg)](https://youtu.be/JQ86N3WOAh4)
+## Getting Started
 
-<a href="https://youtu.be/JQ86N3WOAh4" target="_blank" rel="noopener noreferrer">🔗 Watch on YouTube</a>
+### Prerequisites
 
-## ☕ Support This Project
+- Node.js 18+
+- PostgreSQL database
+- Google OAuth credentials
+- pnpm (recommended)
 
-If this boilerplate helped you build something awesome, consider buying me a coffee!
+### Installation
 
-[![Buy me a coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/leonvanzyl)
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd nano-banana-pro
+   ```
 
-## 📋 Prerequisites
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
 
-Before you begin, ensure you have the following installed on your machine:
+3. Set up environment variables:
+   ```bash
+   cp env.example .env
+   ```
 
-- **Node.js**: Version 18.0 or higher (<a href="https://nodejs.org/" target="_blank">Download here</a>)
-- **Git**: For cloning the repository (<a href="https://git-scm.com/" target="_blank">Download here</a>)
-- **PostgreSQL**: Either locally installed or access to a hosted service like Vercel Postgres
+4. Configure your `.env` file:
+   ```env
+   # Database
+   POSTGRES_URL="postgresql://username:password@localhost:5432/nano_banana"
 
-## 🛠️ Quick Setup
+   # Authentication
+   BETTER_AUTH_SECRET="your-random-32-character-secret-key"
 
-### Automated Setup (Recommended)
+   # Google OAuth
+   GOOGLE_CLIENT_ID="your-google-client-id"
+   GOOGLE_CLIENT_SECRET="your-google-client-secret"
 
-Get started with a single command:
+   # App URL
+   NEXT_PUBLIC_APP_URL="http://localhost:3000"
 
-```bash
-npx create-agentic-app@latest my-app
-cd my-app
-```
+   # Optional: Vercel Blob storage (leave empty for local storage)
+   BLOB_READ_WRITE_TOKEN=""
+   ```
 
-Or create in the current directory:
+5. Set up the database:
+   ```bash
+   pnpm db:migrate
+   ```
 
-```bash
-npx create-agentic-app@latest .
-```
+6. Start the development server:
+   ```bash
+   pnpm dev
+   ```
 
-The CLI will:
-- Copy all boilerplate files
-- Install dependencies with your preferred package manager (pnpm/npm/yarn)
-- Set up your environment file
+7. Open [http://localhost:3000](http://localhost:3000)
 
-**Next steps after running the command:**
+## Usage
 
-1. Update `.env` with your API keys and database credentials
-2. Start the database: `docker compose up -d`
-3. Run migrations: `npm run db:migrate`
-4. Start dev server: `npm run dev`
+1. **Sign in** with your Google account
+2. **Add your Google AI API key** in settings (get one from [Google AI Studio](https://aistudio.google.com/apikey))
+3. **Create avatars** by uploading reference images for consistent character generation
+4. **Build your prompt** using the Prompt Builder interface
+5. **Generate images** and refine them with follow-up prompts
+6. **Share to gallery** by making images public for the community to see
 
-### Manual Setup (Alternative)
-
-If you prefer to set up manually:
-
-**1. Clone or Download the Repository**
-
-**Option A: Clone with Git**
-
-```bash
-git clone https://github.com/leonvanzyl/agentic-coding-starter-kit.git
-cd agentic-coding-starter-kit
-```
-
-**Option B: Download ZIP**
-Download the repository as a ZIP file and extract it to your desired location.
-
-**2. Install Dependencies**
-
-```bash
-npm install
-```
-
-**3. Environment Setup**
-
-Copy the example environment file:
-
-```bash
-cp env.example .env
-```
-
-Fill in your environment variables in the `.env` file:
-
-```env
-# Database
-POSTGRES_URL="postgresql://username:password@localhost:5432/your_database_name"
-
-# Authentication - Better Auth
-BETTER_AUTH_SECRET="your-random-32-character-secret-key-here"
-
-# Google OAuth (Get from Google Cloud Console)
-GOOGLE_CLIENT_ID="your-google-client-id"
-GOOGLE_CLIENT_SECRET="your-google-client-secret"
-
-# AI Integration via OpenRouter (Optional - for chat functionality)
-# Get your API key from: https://openrouter.ai/settings/keys
-# View available models at: https://openrouter.ai/models
-OPENROUTER_API_KEY="sk-or-v1-your-openrouter-api-key-here"
-OPENROUTER_MODEL="openai/gpt-5-mini"
-
-# App URL (for production deployments)
-NEXT_PUBLIC_APP_URL="http://localhost:3000"
-
-# File Storage (Optional - for file upload functionality)
-# Leave empty to use local storage (public/uploads/) in development
-# Set to enable Vercel Blob storage in production
-BLOB_READ_WRITE_TOKEN=""
-```
-
-**4. Database Setup**
-
-Generate and run database migrations:
+## Development Commands
 
 ```bash
-npm run db:generate
-npm run db:migrate
+pnpm dev              # Start dev server with Turbopack
+pnpm build            # Build for production
+pnpm lint             # Run ESLint
+pnpm typecheck        # Run TypeScript type checking
+pnpm check            # Run both lint and typecheck
+pnpm format           # Format code with Prettier
 ```
 
-**5. Start the Development Server**
+### Database Commands
 
 ```bash
-npm run dev
+pnpm db:push          # Push schema changes (development)
+pnpm db:generate      # Generate migrations
+pnpm db:migrate       # Run migrations
+pnpm db:studio        # Open Drizzle Studio GUI
+pnpm db:reset         # Drop and recreate all tables
 ```
 
-Your application will be available at [http://localhost:3000](http://localhost:3000)
-
-## ⚙️ Service Configuration
-
-### PostgreSQL Database on Vercel
-
-1. Go to <a href="https://vercel.com/dashboard" target="_blank">Vercel Dashboard</a>
-2. Navigate to the **Storage** tab
-3. Click **Create** → **Postgres**
-4. Choose your database name and region
-5. Copy the `POSTGRES_URL` from the `.env.local` tab
-6. Add it to your `.env` file
-
-### Google OAuth Credentials
-
-1. Go to <a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a>
-2. Create a new project or select an existing one
-3. Navigate to **Credentials** → **Create Credentials** → **OAuth 2.0 Client ID**
-4. Set application type to **Web application**
-5. Add authorized redirect URIs:
-   - `http://localhost:3000/api/auth/callback/google` (development)
-   - `https://yourdomain.com/api/auth/callback/google` (production)
-6. Copy the **Client ID** and **Client Secret** to your `.env` file
-
-### OpenRouter API Key
-
-1. Go to <a href="https://openrouter.ai/" target="_blank">OpenRouter</a>
-2. Sign up or log in to your account
-3. Navigate to **Settings** → **Keys** or visit <a href="https://openrouter.ai/settings/keys" target="_blank">Keys Settings</a>
-4. Click **Create Key** and give it a name
-5. Copy the API key and add it to your `.env` file as `OPENROUTER_API_KEY`
-6. Browse available models at <a href="https://openrouter.ai/models" target="_blank">OpenRouter Models</a>
-
-### File Storage Configuration
-
-The project includes a flexible storage abstraction that automatically switches between local filesystem storage (development) and Vercel Blob storage (production).
-
-**For Development (Local Storage):**
-- Leave `BLOB_READ_WRITE_TOKEN` empty or unset in your `.env` file
-- Files are automatically stored in `public/uploads/`
-- Files are served at `/uploads/` URL path
-- No external service or configuration needed
-
-**For Production (Vercel Blob):**
-1. Go to <a href="https://vercel.com/dashboard" target="_blank">Vercel Dashboard</a>
-2. Navigate to your project → **Storage** tab
-3. Click **Create** → **Blob**
-4. Copy the `BLOB_READ_WRITE_TOKEN` from the integration
-5. Add it to your production environment variables
-
-The storage service automatically detects which backend to use based on the presence of the `BLOB_READ_WRITE_TOKEN` environment variable.
-
-## 🗂️ Project Structure
+## Project Structure
 
 ```
 src/
-├── app/                    # Next.js app directory
-│   ├── api/               # API routes
-│   │   ├── auth/          # Authentication endpoints
-│   │   └── chat/          # AI chat endpoint
-│   ├── chat/              # AI chat page
-│   ├── dashboard/         # User dashboard
-│   └── page.tsx           # Home page
-├── components/            # React components
-│   ├── auth/             # Authentication components
-│   └── ui/               # shadcn/ui components
-└── lib/                  # Utilities and configurations
-    ├── auth.ts           # Better Auth configuration
-    ├── auth-client.ts    # Client-side auth utilities
-    ├── db.ts             # Database connection
-    ├── schema.ts         # Database schema
-    ├── storage.ts        # File storage abstraction
-    └── utils.ts          # General utilities
+├── app/                      # Next.js app directory
+│   ├── api/                  # API routes
+│   ├── generate/             # Image generation page
+│   ├── gallery/              # Public gallery page
+│   └── dashboard/            # User dashboard
+├── components/
+│   ├── generate/             # Prompt builder and generation UI
+│   ├── auth/                 # Authentication components
+│   └── ui/                   # shadcn/ui components
+├── hooks/                    # Custom React hooks
+│   ├── use-avatars.ts        # Avatar management
+│   ├── use-generation.ts     # Image generation logic
+│   └── use-prompt-builder.ts # Prompt builder state
+└── lib/
+    ├── gemini.ts             # Gemini API integration
+    ├── schema.ts             # Database schema
+    ├── storage.ts            # File storage abstraction
+    └── auth.ts               # Authentication config
 ```
 
-## 🔧 Available Scripts
+## Environment Variables
 
-```bash
-npm run dev          # Start development server with Turbopack
-npm run build        # Build for production
-npm run start        # Start production server
-npm run lint         # Run ESLint
-npm run db:generate  # Generate database migrations
-npm run db:migrate   # Run database migrations
-npm run db:push      # Push schema changes to database
-npm run db:studio    # Open Drizzle Studio (database GUI)
-npm run db:dev       # Push schema for development
-npm run db:reset     # Reset database (drop all tables)
-```
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `POSTGRES_URL` | Yes | PostgreSQL connection string |
+| `BETTER_AUTH_SECRET` | Yes | 32+ character secret for auth |
+| `GOOGLE_CLIENT_ID` | Yes | Google OAuth client ID |
+| `GOOGLE_CLIENT_SECRET` | Yes | Google OAuth client secret |
+| `NEXT_PUBLIC_APP_URL` | Yes | Application URL |
+| `BLOB_READ_WRITE_TOKEN` | No | Vercel Blob token (uses local storage if not set) |
 
-## 📖 Pages Overview
+## Deployment
 
-- **Home (`/`)**: Landing page with setup instructions and features overview
-- **Dashboard (`/dashboard`)**: Protected user dashboard with profile information
-- **Chat (`/chat`)**: AI-powered chat interface using OpenRouter (requires authentication)
+### Vercel (Recommended)
 
-## 🚀 Deployment
+1. Push your code to GitHub
+2. Import the project in Vercel
+3. Add environment variables
+4. Deploy
 
-### Deploy to Vercel (Recommended)
+The application will automatically use Vercel Blob for storage when `BLOB_READ_WRITE_TOKEN` is configured.
 
-1. Install the Vercel CLI globally:
+## License
 
-   ```bash
-   npm install -g vercel
-   ```
-
-2. Deploy your application:
-
-   ```bash
-   vercel --prod
-   ```
-
-3. Follow the prompts to configure your deployment
-4. Add your environment variables when prompted or via the Vercel dashboard
-
-### Production Environment Variables
-
-Ensure these are set in your production environment:
-
-- `POSTGRES_URL` - Production PostgreSQL connection string
-- `BETTER_AUTH_SECRET` - Secure random 32+ character string
-- `GOOGLE_CLIENT_ID` - Google OAuth Client ID
-- `GOOGLE_CLIENT_SECRET` - Google OAuth Client Secret
-- `OPENROUTER_API_KEY` - OpenRouter API key (optional, for AI chat functionality)
-- `OPENROUTER_MODEL` - Model name from OpenRouter (optional, defaults to openai/gpt-5-mini)
-- `NEXT_PUBLIC_APP_URL` - Your production domain
-- `BLOB_READ_WRITE_TOKEN` - Vercel Blob token (optional, uses local storage if not set)
-
-## 🎥 Tutorial Video
-
-Watch my comprehensive tutorial on how to use this agentic coding boilerplate to build AI-powered applications:
-
-<a href="https://youtu.be/JQ86N3WOAh4" target="_blank" rel="noopener noreferrer">📺 YouTube Tutorial - Building with Agentic Coding Boilerplate</a>
-
-## 🤝 Contributing
-
-1. Fork this repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🆘 Need Help?
-
-If you encounter any issues:
-
-1. Check the [Issues](https://github.com/leonvanzyl/agentic-coding-starter-kit/issues) section
-2. Review the documentation above
-3. Create a new issue with detailed information about your problem
-
----
-
-**Happy coding! 🚀**
+MIT License - see [LICENSE](LICENSE) for details.
