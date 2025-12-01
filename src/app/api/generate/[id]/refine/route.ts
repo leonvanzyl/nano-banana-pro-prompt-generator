@@ -12,6 +12,9 @@ import type {
   GenerationHistoryEntry,
 } from "@/lib/types/generation";
 
+// Maximum duration for Vercel Hobby plan is 60 seconds
+export const maxDuration = 60;
+
 interface RouteParams {
   params: Promise<{ id: string }>;
 }

@@ -12,6 +12,9 @@ import type {
   GenerationWithImages,
 } from "@/lib/types/generation";
 
+// Maximum duration for Vercel Hobby plan is 60 seconds
+export const maxDuration = 60;
+
 interface GenerateRequestBody {
   prompt: string;
   settings: GenerationSettings;
