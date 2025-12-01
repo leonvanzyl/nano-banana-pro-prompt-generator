@@ -8,6 +8,27 @@
       "when": 1762409965425,
       "tag": "0000_chilly_the_phantom",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1764574288346,
+      "tag": "0001_clammy_swarm",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1764578203603,
+      "tag": "0002_brave_nehzno",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1764588222349,
+      "tag": "0003_mean_medusa",
+      "breakpoints": true
     }
   ]
 }

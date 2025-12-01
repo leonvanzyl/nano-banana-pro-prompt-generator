@@ -18,36 +18,35 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Agentic Coding Boilerplate",
-    template: "%s | Agentic Coding Boilerplate",
+    default: "Nano Banana Pro",
+    template: "%s | Nano Banana Pro",
   },
   description:
-    "Complete agentic coding boilerplate with authentication, database, AI integration, and modern tooling - perfect for building AI-powered applications and autonomous agents by Leon van Zyl",
+    "AI-powered image generation using Gemini. Create stunning images with text-to-image and image-to-image capabilities, customizable prompts, and reusable avatars.",
   keywords: [
+    "AI Image Generation",
+    "Gemini",
+    "Text to Image",
+    "Image Generation",
+    "Nano Banana Pro",
     "Next.js",
     "React",
-    "TypeScript",
-    "AI",
-    "OpenRouter",
-    "Boilerplate",
-    "Authentication",
-    "PostgreSQL",
   ],
-  authors: [{ name: "Leon van Zyl" }],
-  creator: "Leon van Zyl",
+  authors: [{ name: "Nano Banana Pro" }],
+  creator: "Nano Banana Pro",
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "Agentic Coding Boilerplate",
-    title: "Agentic Coding Boilerplate",
+    siteName: "Nano Banana Pro",
+    title: "Nano Banana Pro",
     description:
-      "Complete agentic coding boilerplate with authentication, database, AI integration, and modern tooling",
+      "AI-powered image generation using Gemini. Create stunning images with customizable prompts.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Agentic Coding Boilerplate",
+    title: "Nano Banana Pro",
     description:
-      "Complete agentic coding boilerplate with authentication, database, AI integration, and modern tooling",
+      "AI-powered image generation using Gemini. Create stunning images with customizable prompts.",
   },
   robots: {
     index: true,
@@ -59,10 +58,10 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "Agentic Coding Boilerplate",
+  name: "Nano Banana Pro",
   description:
-    "Complete agentic coding boilerplate with authentication, database, AI integration, and modern tooling",
-  applicationCategory: "DeveloperApplication",
+    "AI-powered image generation using Gemini. Create stunning images with text-to-image and image-to-image capabilities.",
+  applicationCategory: "MultimediaApplication",
   operatingSystem: "Any",
   offers: {
     "@type": "Offer",
@@ -70,8 +69,8 @@ const jsonLd = {
     priceCurrency: "USD",
   },
   author: {
-    "@type": "Person",
-    name: "Leon van Zyl",
+    "@type": "Organization",
+    name: "Nano Banana Pro",
   },
 };
 

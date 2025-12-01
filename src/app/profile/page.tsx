@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Mail, Calendar, User, Shield, ArrowLeft, Lock, Smartphone } from "lucide-react";
 import { toast } from "sonner";
+import { ApiKeyForm } from "@/components/profile/api-key-form";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -181,6 +182,9 @@ export default function ProfilePage() {
             </div>
           </CardContent>
         </Card>
+
+        {/* API Key Management */}
+        <ApiKeyForm />
 
         {/* Account Activity */}
         <Card>
