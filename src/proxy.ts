@@ -21,5 +21,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/generate", "/gallery", "/avatars", "/profile"], // Protected routes
+  matcher: ["/generate", "/gallery", "/avatars", "/profile", "/admin/:path*"], // Protected routes
 };

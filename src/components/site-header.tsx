@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Banana, Menu, Wand2, Image as ImageIcon, Users, Settings } from "lucide-react";
+import { Banana, Menu, Wand2, Image as ImageIcon, Users, Settings, Shield } from "lucide-react";
 import { UserProfile } from "@/components/auth/user-profile";
 import { useSession } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
@@ -76,6 +76,20 @@ export function SiteHeader() {
                   </Link>
                 );
               })}
+              {session.user.platformRole === "admin" && (
+                <Link
+                  href="/admin"
+                  className={cn(
+                    "flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors",
+                    pathname.startsWith("/admin")
+                      ? "bg-primary/10 text-primary"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                  )}
+                >
+                  <Shield className="h-4 w-4" />
+                  Admin
+                </Link>
+              )}
             </div>
           )}
 
@@ -117,6 +131,20 @@ export function SiteHeader() {
                         </Link>
                       );
                     })}
+                    {session.user.platformRole === "admin" && (
+                      <Link
+                        href="/admin"
+                        className={cn(
+                          "flex items-center gap-3 px-3 py-3 rounded-md text-sm font-medium transition-colors",
+                          pathname.startsWith("/admin")
+                            ? "bg-primary/10 text-primary"
+                            : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                        )}
+                      >
+                        <Shield className="h-5 w-5" />
+                        Admin
+                      </Link>
+                    )}
                   </nav>
                 </SheetContent>
               </Sheet>

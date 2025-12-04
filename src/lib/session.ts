@@ -6,7 +6,7 @@ import { auth } from "@/lib/auth";
  * Protected routes that require authentication.
  * These are also configured in src/proxy.ts for optimistic redirects.
  */
-export const protectedRoutes = ["/generate", "/gallery", "/avatars", "/profile"];
+export const protectedRoutes = ["/generate", "/gallery", "/avatars", "/profile", "/admin"];
 
 /**
  * Checks if the current request is authenticated.

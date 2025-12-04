@@ -8,6 +8,7 @@ export const user = pgTable(
     email: text("email").notNull().unique(),
     emailVerified: boolean("email_verified").default(false).notNull(),
     image: text("image"),
+    platformRole: text("platform_role"), // nullable, 'admin' for admins
     createdAt: timestamp("created_at").defaultNow().notNull(),
     updatedAt: timestamp("updated_at")
       .defaultNow()
