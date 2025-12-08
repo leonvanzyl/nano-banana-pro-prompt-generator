@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import { User, Loader2 } from "lucide-react";
 import { DeleteConfirmation } from "@/components/admin/delete-confirmation";
+import { ImageFullscreen } from "@/components/admin/image-fullscreen";
 import { Pagination } from "@/components/admin/pagination";
 import { UserSearch } from "@/components/admin/user-search";
 import { Badge } from "@/components/ui/badge";
@@ -169,12 +170,14 @@ export default function AdminAvatarsPage() {
               <TableRow key={avatar.id}>
                 <TableCell>
                   <div className="w-10 h-10 rounded-md overflow-hidden bg-muted">
-                    <Image
+                    <ImageFullscreen
                       src={avatar.imageUrl}
                       alt={avatar.name}
-                      width={40}
-                      height={40}
-                      className="w-full h-full object-cover"
+                      title={avatar.name}
+                      description={avatar.description ?? undefined}
+                      thumbnailWidth={40}
+                      thumbnailHeight={40}
+                      thumbnailClassName="w-full h-full"
                     />
                   </div>
                 </TableCell>

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import { User, Loader2, Eye, EyeOff, Heart } from "lucide-react";
 import { DeleteConfirmation } from "@/components/admin/delete-confirmation";
+import { ImageFullscreen } from "@/components/admin/image-fullscreen";
 import { Pagination } from "@/components/admin/pagination";
 import { UserSearch } from "@/components/admin/user-search";
 import { Badge } from "@/components/ui/badge";
@@ -158,14 +159,22 @@ export default function AdminImagesPage() {
             >
               {/* Image */}
               <div className="aspect-square relative bg-muted">
-                <Image
+                <ImageFullscreen
                   src={image.imageUrl}
                   alt={image.prompt}
+                  title="Generated Image"
+                  description={image.prompt}
                   fill
-                  className="object-cover"
-                />
+                >
+                  <Image
+                    src={image.imageUrl}
+                    alt={image.prompt}
+                    fill
+                    className="object-cover"
+                  />
+                </ImageFullscreen>
                 {/* Visibility Badge */}
-                <div className="absolute top-2 left-2">
+                <div className="absolute top-2 left-2 pointer-events-none">
                   <Badge
                     variant={image.isPublic ? "default" : "secondary"}
                     className="gap-1"
@@ -185,7 +194,7 @@ export default function AdminImagesPage() {
                 </div>
                 {/* Like Count */}
                 {image.likeCount > 0 && (
-                  <div className="absolute top-2 right-2">
+                  <div className="absolute top-2 right-2 pointer-events-none">
                     <Badge variant="secondary" className="gap-1">
                       <Heart className="h-3 w-3" />
                       {image.likeCount}
